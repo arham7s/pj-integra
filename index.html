@@ -262,6 +262,38 @@ tr.hl td{background:var(--accent-soft)}
 .own-key .k-old::before,.own-key .k-new::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .own-key .k-old::before{background:var(--b-exp)}.own-key .k-new::before{background:var(--accent)}
 .srcs{font-size:.88rem}
+.vc-legend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:.84rem;color:var(--muted)}
+.vc-legend .vc-tag:nth-child(2){margin-left:14px}
+.vc{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr);align-items:stretch}
+.vc-phase{display:grid;gap:8px;align-content:start;background:var(--sunk);border-radius:12px;padding:12px;min-width:0}
+.vc-head{display:flex;gap:10px;align-items:flex-start;padding:2px 2px 6px;border-bottom:1px solid var(--line)}
+.vc-head b{display:block;font-family:var(--f-display);font-size:1.02rem}
+.vc-head span{font-size:.78rem;color:var(--muted);line-height:1.35}
+.vc-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--surface);font-family:var(--f-mono);font-size:.78rem}
+.vc-item{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:10px 11px;display:grid;gap:3px;min-width:0}
+.vc-item.own{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.vc-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.vc-top b{font-size:.92rem}
+.vc-item > span{font-size:.82rem;line-height:1.4}
+.vc-item em{font-style:normal;font-size:.74rem;color:var(--muted)}
+.vc-tag{flex:none;font-size:.64rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--sunk);color:var(--muted);border:1px solid var(--line)}
+.vc-tag.own{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.vc-arrow{display:grid;place-items:center;color:var(--muted);font-size:1.1rem}
+.vc-sum{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:.92rem}
+@media (max-width:900px){.vc{grid-template-columns:minmax(0,1fr)}.vc-arrow{height:26px}.vc-arrow span{transform:rotate(90deg)}}
+.stepper{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;position:relative}
+.stepper::before{content:"";position:absolute;left:8%;right:8%;top:17px;height:2px;background:var(--line)}
+.stepper li{position:relative;display:grid;gap:4px;justify-items:center;text-align:center;align-content:start;padding:0 4px}
+.stepper .dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font-family:var(--f-mono);font-size:.85rem;position:relative;z-index:1;margin-bottom:6px}
+.stepper b{font-size:.92rem}
+.stepper li > span:not(.dot):not(.here){font-size:.8rem;line-height:1.4}
+.stepper em{font-style:normal;font-size:.72rem;color:var(--muted)}
+.stepper li.me .dot{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.stepper li.me{background:var(--accent-soft);border-radius:10px;padding:0 6px 10px}
+.stepper .here{margin-top:4px;font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--surface);background:var(--accent);border-radius:999px;padding:2px 8px}
+@media (max-width:760px){.stepper{grid-template-columns:minmax(0,1fr);gap:0}.stepper::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto}
+.stepper li{grid-template-columns:36px minmax(0,1fr);justify-items:start;text-align:left;column-gap:12px;padding:6px 0}
+.stepper li > *:not(.dot){grid-column:2}.stepper .dot{grid-row:1 / span 4;margin:0}.stepper li.me{padding:6px 8px 10px 0}}
 footer{padding-block:32px 48px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
 
 .gate{min-height:80vh;display:grid;place-items:center;padding-block:40px}
@@ -300,7 +332,7 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);color:var(--mute
 </div>
 <script>
 (function(){
-  var SALT = Uint8Array.from(atob("6CB/3YpOsTnxgbCrpbxtww=="), function(c){return c.charCodeAt(0);}), ITER = 600000;
+  var SALT = Uint8Array.from(atob("U3fg6ue7ZXQIeGnEL5xF/A=="), function(c){return c.charCodeAt(0);}), ITER = 600000;
   var KEY = null, te = new TextEncoder();
   function b64(buf){ var s="",b=new Uint8Array(buf); for(var i=0;i<b.length;i++) s+=String.fromCharCode(b[i]); return btoa(s); }
   function unb64(s){ return Uint8Array.from(atob(s), function(c){return c.charCodeAt(0);}); }
