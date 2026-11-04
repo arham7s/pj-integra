@@ -281,19 +281,26 @@ tr.hl td{background:var(--accent-soft)}
 .vc-arrow{display:grid;place-items:center;color:var(--muted);font-size:1.1rem}
 .vc-sum{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:.92rem}
 @media (max-width:900px){.vc{grid-template-columns:minmax(0,1fr)}.vc-arrow{height:26px}.vc-arrow span{transform:rotate(90deg)}}
-.stepper{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr));gap:12px;position:relative}
-.stepper::before{content:"";position:absolute;left:8%;right:8%;top:17px;height:2px;background:var(--line)}
-.stepper li{position:relative;display:grid;gap:4px;justify-items:center;text-align:center;align-content:start;padding:0 4px}
+.stepper{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr));gap:10px;position:relative}
+.stepper::before{content:"";position:absolute;left:calc(50% / var(--n,6));right:calc(50% / var(--n,6));top:32px;height:2px;background:var(--line)}
+.stepper li{position:relative;display:grid;gap:5px;justify-items:center;text-align:center;align-content:start;padding:14px 10px 16px;border-radius:12px;border:1px solid transparent;min-width:0;overflow-wrap:break-word;hyphens:auto}
 .stepper .dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font-family:var(--f-mono);font-size:.85rem;position:relative;z-index:1;margin-bottom:6px}
-.stepper b{font-size:.92rem}
-.stepper li > span:not(.dot):not(.here){font-size:.8rem;line-height:1.4}
-.stepper em{font-style:normal;font-size:.72rem;color:var(--muted)}
+.stepper b{font-size:.92rem;line-height:1.3}
+.stepper li > span:not(.dot):not(.here){font-size:.82rem;line-height:1.45}
+.stepper em{font-style:normal;font-size:.74rem;color:var(--muted);line-height:1.4}
+.stepper li.me{background:var(--accent-soft);border-color:var(--accent);z-index:1}
 .stepper li.me .dot{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.stepper li.me{background:var(--accent-soft);border-radius:10px;padding:0 6px 10px}
-.stepper .here{margin-top:4px;font-size:.68rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--surface);background:var(--accent);border-radius:999px;padding:2px 8px}
-@media (max-width:760px){.stepper{grid-template-columns:minmax(0,1fr);gap:0}.stepper::before{left:17px;right:auto;top:18px;bottom:18px;width:2px;height:auto}
-.stepper li{grid-template-columns:36px minmax(0,1fr);justify-items:start;text-align:left;column-gap:12px;padding:6px 0}
-.stepper li > *:not(.dot){grid-column:2}.stepper .dot{grid-row:1 / span 4;margin:0}.stepper li.me{padding:6px 8px 10px 0}}
+.stepper .here{margin-top:6px;font-size:.66rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--surface);background:var(--accent);border-radius:999px;padding:3px 10px;text-align:center;max-width:100%}
+.stepper-wrap{container-type:inline-size}
+@container (max-width:900px){.stepper.many{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.stepper.many::before{display:none}}
+@container (max-width:680px){
+  .stepper,.stepper.many{grid-template-columns:minmax(0,1fr);gap:6px}
+  .stepper::before,.stepper.many::before{display:block;left:31px;right:auto;top:30px;bottom:30px;width:2px;height:auto}
+  .stepper li{grid-template-columns:36px minmax(0,1fr);justify-items:start;text-align:left;column-gap:14px;row-gap:3px;padding:12px}
+  .stepper li > *:not(.dot){grid-column:2}
+  .stepper .dot{grid-row:1 / span 4;margin:0}
+  .stepper .here{justify-self:start}
+}
 .ucd-list{display:grid;gap:12px}
 .ucd{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .ucd[open]{border-color:var(--accent)}
@@ -370,7 +377,7 @@ footer{padding-block:32px 48px;border-top:1px solid var(--line);color:var(--mute
 </div>
 <script>
 (function(){
-  var SALT = Uint8Array.from(atob("2Oxp9T1BYS8t41ML7NTySg=="), function(c){return c.charCodeAt(0);}), ITER = 600000;
+  var SALT = Uint8Array.from(atob("fBFt4YSMm2RpYrwPohOfrA=="), function(c){return c.charCodeAt(0);}), ITER = 600000;
   var KEY = null, te = new TextEncoder();
   function b64(buf){ var s="",b=new Uint8Array(buf); for(var i=0;i<b.length;i++) s+=String.fromCharCode(b[i]); return btoa(s); }
   function unb64(s){ return Uint8Array.from(atob(s), function(c){return c.charCodeAt(0);}); }
